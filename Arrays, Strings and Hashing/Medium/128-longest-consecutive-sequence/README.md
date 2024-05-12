@@ -25,3 +25,21 @@
 	<li><code>0 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>
 	<li><code>-10<sup>9</sup> &lt;= nums[i] &lt;= 10<sup>9</sup></code></li>
 </ul>
+
+## Solution Explanation
+
+The solution finds the length of the longest consecutive elements sequence in an unsorted array using a set. Here’s the plan in detail:
+
+1. **Initialize Set**: Convert the input list to a set to facilitate quick lookups of consecutive numbers.
+2. **Find Sequences**:
+    - Traverse each number in the input list.
+    - If the current number does not have a preceding consecutive neighbor (i.e., `num - 1` is not in the set), then it marks the start of a new sequence.
+    - Starting from this number, keep counting consecutive numbers until the next number isn't found in the set.
+    - Track the maximum length of consecutive sequences found.
+3. **Return Maximum Length**: Return the maximum length of any consecutive sequence.
+
+### Complexity Analysis
+
+- **Time Complexity**: `O(n)` since each number is only processed once when checking for consecutive sequences.
+- **Space Complexity**: `O(n)` because the set stores all unique numbers from the input list.
+
