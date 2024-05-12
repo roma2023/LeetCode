@@ -18,3 +18,19 @@
 	<li><code>1 &lt;= nums.length &lt;= 10<sup>5</sup></code></li>
 	<li><code>-10<sup>9</sup> &lt;= nums[i] &lt;= 10<sup>9</sup></code></li>
 </ul>
+
+## Solution Explanation
+
+The solution checks if a given list of integers, `nums`, contains any duplicate values using a hash set. Here’s a brief outline of the approach:
+
+1. **Initialize Hash Set**: Create an empty set to store unique numbers.
+2. **Check Duplicates**:
+    - Iterate through each number in the list.
+    - If the number is already in the set, a duplicate is found, so return `True`.
+    - If not, add the number to the set and continue.
+3. **No Duplicates Found**: If the loop completes without finding any duplicates, return `False`.
+
+### Complexity Analysis
+
+- **Time Complexity**: `O(n)`, where `n` is the length of the input list. Each lookup and insertion operation in the set takes constant time on average.
+- **Space Complexity**: `O(n)` because the set needs to store all the distinct numbers in the worst case.

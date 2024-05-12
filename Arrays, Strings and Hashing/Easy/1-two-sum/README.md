@@ -39,3 +39,20 @@
 
 <p>&nbsp;</p>
 <strong>Follow-up:&nbsp;</strong>Can you come up with an algorithm that is less than <code>O(n<sup>2</sup>)</code><font face="monospace">&nbsp;</font>time complexity?
+
+## Solution Explanation
+
+The solution finds two indices of numbers in `nums` that add up to a specified `target` using a hash table. Here’s the approach in detail:
+
+1. **Initialize Hash Table**: Create an empty dictionary (`pastNums`) to store previously seen numbers and their indices.
+2. **Find Complement**:
+    - Traverse each index and number in `nums`.
+    - Calculate the complement by subtracting the current number from the target.
+    - If the complement exists in the hash table, return the current index and the stored index of the complement, as they form the required pair.
+    - Otherwise, store the current number with its index in the hash table.
+3. **No Valid Pair**: If no pair is found that adds up to the target, return an empty result.
+
+### Complexity Analysis
+
+- **Time Complexity**: `O(n)`, where `n` is the length of the input list. The lookup and insertion operations in the hash table both take constant time on average.
+- **Space Complexity**: `O(n)` because the hash table needs to store the indices of all previously seen numbers.

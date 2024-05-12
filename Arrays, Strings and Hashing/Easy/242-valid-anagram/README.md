@@ -20,3 +20,18 @@
 
 <p>&nbsp;</p>
 <p><strong>Follow up:</strong> What if the inputs contain Unicode characters? How would you adapt your solution to such a case?</p>
+
+## Solution Explanation
+
+The solution verifies whether two strings `s` and `t` are anagrams by counting the frequency of characters in each string. The algorithm uses a hash table (Python dictionary) to keep track of the frequency differences between `s` and `t`. Here’s the step-by-step approach:
+
+1. **Initial Length Check**: If the strings have different lengths, they're not anagrams.
+2. **Frequency Count**: Traverse both strings simultaneously. Increment the count for each character in `s` and decrement the count for each character in `t`.
+3. **Validation**: After processing both strings, check if all counts are zero. If any count is non-zero, the strings are not anagrams.
+
+### Complexity Analysis
+
+- **Time Complexity**: `O(n)`, where `n` is the length of the input strings. We iterate through both strings once and then validate the frequency table.
+- **Space Complexity**: `O(n)` because the hash table stores the frequency of up to `n` distinct characters.
+
+
