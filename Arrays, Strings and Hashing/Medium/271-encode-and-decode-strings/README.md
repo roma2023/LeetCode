@@ -69,3 +69,30 @@ String[] strs = decoder.decode(msg);
 
 <p>&nbsp;</p>
 <p><strong>Follow up: </strong>Could you write a generalized algorithm to work on any possible set of characters?</p>
+
+## Solution Explanation
+
+This solution involves encoding and decoding a list of strings into a single string using a length-based encoding scheme. Here’s the approach in detail:
+
+### Encode Method
+
+1. **Iterate Through Strings**: For each string in the input list, compute its length.
+2. **Build Encoded String**: Append to the result string a format that consists of the length of the string, followed by a hash (`#`), and then the string itself. This format helps to precisely determine where each string begins and ends in the encoded string.
+3. **Return Encoded String**: The output is a single string that contains all the encoded strings concatenated together.
+
+### Decode Method
+
+1. **Initialize Variables**: Start with an empty list to hold the decoded strings.
+2. **Extract Strings**:
+   - Continuously look for the hash (`#`) to find the next string's length.
+   - Use this length to slice the appropriate substring from the encoded string.
+   - Append the extracted substring to the list of decoded strings.
+   - Remove the processed portion from the encoded string.
+3. **Return Decoded List**: The output is a list of strings that were originally encoded.
+
+### Complexity Analysis
+
+- **Time Complexity**: 
+  - **Encode**: `O(n)`, where `n` is the total number of characters across all strings. Each string is processed linearly to build the encoded string.
+  - **Decode**: `O(n)`, since each character in the encoded string is processed once to rebuild the original list of strings.
+- **Space Complexity**: `O(n)`, where `n` is the total length of the input string list. The space is used for storing the encoded string and the temporary variables during decoding.
