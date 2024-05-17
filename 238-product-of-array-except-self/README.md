@@ -23,3 +23,21 @@
 
 <p>&nbsp;</p>
 <p><strong>Follow up:</strong>&nbsp;Can you solve the problem in <code>O(1)</code>&nbsp;extra&nbsp;space complexity? (The output array <strong>does not</strong> count as extra space for space complexity analysis.)</p>
+
+## Solution Explanation
+
+The solution calculates the product of all elements in an array except for the element itself without using division. This is achieved using prefix and postfix products. Here's the method in detail:
+
+1. **Initialize Result Array**:
+   - Start with a result array `res` initialized with 1s. This array will store the result of the product except self for each element.
+2. **Calculate Prefix Product**:
+   - Iterate through the array from the start, updating `pre` to hold the product of all previous numbers. Update the result array such that each element at index `i+1` holds the product of all numbers before it.
+3. **Calculate Postfix Product**:
+   - Iterate through the array from the end, updating `post` to hold the product of all following numbers. Simultaneously, update the result array to multiply the existing value by the product of all numbers after it.
+4. **Combine Prefix and Postfix**:
+   - By the end of these operations, each element in the result array represents the product of all other elements in the array except itself.
+
+### Complexity Analysis
+
+- **Time Complexity**: `O(n)`, where `n` is the number of elements in the array. Each element is visited a constant number of times (once for prefix calculations and once for postfix calculations).
+- **Space Complexity**: `O(n)` for the result array that is returned. The additional space used for the `pre` and `post` variables is constant, `O(1)`.

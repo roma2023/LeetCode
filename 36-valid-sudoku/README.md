@@ -55,3 +55,24 @@
 	<li><code>board[i].length == 9</code></li>
 	<li><code>board[i][j]</code> is a digit <code>1-9</code> or <code>&#39;.&#39;</code>.</li>
 </ul>
+
+## Solution Explanation
+
+The solution checks if a given 9x9 Sudoku board is valid by ensuring there are no duplicate numbers in any row, column, or 3x3 sub-grid. Each cell may contain numbers from 1 to 9 or be empty (represented by '.'). Here’s the approach:
+
+1. **Check Rows and Columns**:
+   - Iterate through each row and column simultaneously.
+   - For each row and column, create a list of encountered numbers, ignoring empty cells.
+   - Use a helper function (`check_for_repetition`) to determine if the list has any duplicates by converting it to a set and comparing its length to the original list's length.
+2. **Check 3x3 Sub-grids**:
+   - Traverse the board in 3x3 block increments.
+   - For each block, compile a list of numbers present, ignoring empty cells.
+   - Again, use the `check_for_repetition` function to check for duplicates.
+3. **Return Result**:
+   - If any row, column, or 3x3 block contains duplicates, return `False`.
+   - If all checks pass, return `True`, confirming the board is valid.
+
+### Complexity Analysis
+
+- **Time Complexity**: `O(1)`, as the input size is constant (a 9x9 board), making the operation effectively constant time despite the nested loops.
+- **Space Complexity**: `O(1)`, since the space used does not scale with input size but remains limited to storing a fixed number of elements (at most 9) from the board at any time.
