@@ -21,6 +21,20 @@
 <p>&nbsp;</p>
 <p><strong>Follow up:</strong> What if the inputs contain Unicode characters? How would you adapt your solution to such a case?</p>
 
+## Analysis of Approaches
+
+### Sorting Both Strings
+**Description**: A straightforward approach would be to sort both strings and then compare them for equality.
+- **Time Complexity**: `O(n log n)` due to the sorting process, where `n` is the length of the string.
+- **Space Complexity**: `O(n)` needed to store the sorted strings if strings are immutable.
+- **Drawbacks**: While simple, sorting can be slower for large strings and is less efficient than using hash tables.
+
+### Counting Frequency with Array
+**Description**: Since the problem is constrained to lowercase letters, use a fixed-size array of 26 to count character frequencies.
+- **Pros**: Faster and more space-efficient for problems limited to a single case alphabetic characters.
+- **Time Complexity**: `O(n)`, where `n` is the length of the strings.
+- **Space Complexity**: `O(1)`, since the size of the array is constant and does not scale with the size of the input.
+
 ## Solution Explanation
 
 The solution verifies whether two strings `s` and `t` are anagrams by counting the frequency of characters in each string. The algorithm uses a hash table (Python dictionary) to keep track of the frequency differences between `s` and `t`. Here’s the step-by-step approach:
@@ -34,4 +48,18 @@ The solution verifies whether two strings `s` and `t` are anagrams by counting t
 - **Time Complexity**: `O(n)`, where `n` is the length of the input strings. We iterate through both strings once and then validate the frequency table.
 - **Space Complexity**: `O(n)` because the hash table stores the frequency of up to `n` distinct characters.
 
+## Demonstration of the Optimal Solution
 
+### Example Using Input 1
+
+**Input**: s = "anagram", t = "nagaram"
+
+1. **Initialize Hash Table**: Create a dictionary to count character occurrences.
+2. **Increment and Decrement Counts**:
+   - For `s = "anagram"`, increment counts.
+   - For `t = "nagaram"`, decrement counts.
+3. **Check for Zero Counts**: All counts are zero, indicating all characters match in frequency.
+
+**Output**: true
+
+This demonstration clearly shows the efficiency of using a hash table to quickly verify if two strings are anagrams by ensuring their character counts are identical.
