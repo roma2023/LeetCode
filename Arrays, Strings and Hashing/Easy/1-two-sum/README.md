@@ -40,6 +40,18 @@
 <p>&nbsp;</p>
 <strong>Follow-up:&nbsp;</strong>Can you come up with an algorithm that is less than <code>O(n<sup>2</sup>)</code><font face="monospace">&nbsp;</font>time complexity?
 
+## Analysis of Approaches
+
+### Brute Force Approach
+**Description**: Check every pair of numbers to see if they sum to the target.
+- **Time Complexity**: `O(n^2)`, where `n` is the number of elements in the list. This method checks every combination of elements in the array.
+- **Drawbacks**: Inefficient for large arrays due to the high time complexity.
+
+### Two-pointer Technique
+**Description**: First sort the array, then use two pointers to find the two numbers that add up to the target.
+- **Time Complexity**: `O(n log n)` due to the sorting step, then `O(n)` for the two-pointer scan.
+- **Drawbacks**: Sorting the array can disrupt the indices, making it difficult to return the original indices of the numbers.
+
 ## Solution Explanation
 
 The solution finds two indices of numbers in `nums` that add up to a specified `target` using a hash table. Here’s the approach in detail:
@@ -56,3 +68,19 @@ The solution finds two indices of numbers in `nums` that add up to a specified `
 
 - **Time Complexity**: `O(n)`, where `n` is the length of the input list. The lookup and insertion operations in the hash table both take constant time on average.
 - **Space Complexity**: `O(n)` because the hash table needs to store the indices of all previously seen numbers.
+
+## Demonstration of the Optimal Solution
+
+### Example Using Input 1
+
+**Input**: nums = [2,7,11,15], target = 9
+
+1. **Processing Elements**:
+   - First element is `2`. Complement needed is `9 - 2 = 7`.
+   - Store `2` in the hash table: `{2: 0}`.
+   - Next element is `7`. Hash table has the complement `7`.
+   - Indices found: `0` and `1`.
+
+**Output**: [0,1]
+
+This step-by-step demonstration shows the efficiency and simplicity of using a hash table to quickly find the two indices that sum to the target by checking complements.
