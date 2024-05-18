@@ -21,6 +21,16 @@
 <p>&nbsp;</p>
 <p><strong>Follow up:</strong> Your algorithm&#39;s time complexity must be better than <code>O(n log n)</code>, where n is the array&#39;s size.</p>
 
+## Analysis of Approaches
+
+### Sorting Approach
+**Description**: A simple method could involve sorting the numbers by frequency using a dictionary and then picking the top `k` entries.
+- **Time Complexity**: `O(n log n)` due to the sorting step, which could be too slow for large datasets.
+
+### Heap (Priority Queue) Approach
+**Description**: Utilizing a min-heap to keep track of the top `k` frequent elements as you iterate through the frequency dictionary.
+- **Time Complexity**: `O(n log k)`, where `n` is the number of unique elements and `k` is the heap size. This approach can be optimal for small `k` values.
+
 ## Solution Explanation
 
 The solution finds the `k` most frequent elements in a list of integers using a bucket sort approach. Here's the method breakdown:
@@ -38,3 +48,20 @@ The solution finds the `k` most frequent elements in a list of integers using a 
 
 - **Time Complexity**: `O(n)`, where `n` is the number of elements in the input list. This efficiency comes from using the bucket sort method, which avoids the higher time complexity of comparison-based sorting.
 - **Space Complexity**: `O(n)` due to the storage needed for the `count` dictionary and the `bucket` list, which together hold all unique elements and their frequencies.
+
+## Demonstration of the Optimal Solution
+
+### Example Using Input 1
+
+**Input**: nums = [1,1,1,2,2,3], k = 2
+
+1. **Frequency Count**:
+   - Count: `{1: 3, 2: 2, 3: 1}`
+2. **Bucket Sort Preparation**:
+   - Bucket: `[[], [3], [2], [1]]`
+3. **Retrieve Top K Frequent Elements**:
+   - Start from the end and pick the top 2 elements: `1` and `2`.
+
+**Output**: [1, 2]
+
+This demonstration shows how efficiently the solution identifies the `k` most frequent elements using bucket sort, particularly effective for distributing and categorizing data based on frequency.
