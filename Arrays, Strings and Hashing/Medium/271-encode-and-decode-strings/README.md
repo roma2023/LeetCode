@@ -70,6 +70,16 @@ String[] strs = decoder.decode(msg);
 <p>&nbsp;</p>
 <p><strong>Follow up: </strong>Could you write a generalized algorithm to work on any possible set of characters?</p>
 
+## Analysis of Approaches
+
+### Delimiter-Based Approach
+**Description**: An initial thought might be to use a special character as a delimiter to separate strings. However, this approach fails if the delimiter character is present in the input strings.
+- **Drawbacks**: Requires escaping or encoding delimiter characters if they appear in input strings, complicating the process.
+
+### JSON or XML Encoding (Not Allowed)
+**Description**: Using JSON or XML to serialize the list of strings could be intuitive and robust but does not comply with the problem's constraints against using serialization methods like `eval`.
+- **Drawbacks**: Not allowed by the problem constraints, and typically overkill for the task.
+
 ## Solution Explanation
 
 This solution involves encoding and decoding a list of strings into a single string using a length-based encoding scheme. Here’s the approach in detail:
@@ -96,3 +106,23 @@ This solution involves encoding and decoding a list of strings into a single str
   - **Encode**: `O(n)`, where `n` is the total number of characters across all strings. Each string is processed linearly to build the encoded string.
   - **Decode**: `O(n)`, since each character in the encoded string is processed once to rebuild the original list of strings.
 - **Space Complexity**: `O(n)`, where `n` is the total length of the input string list. The space is used for storing the encoded string and the temporary variables during decoding.
+
+## Demonstration of the Optimal Solution
+
+### Example Using Input 1
+
+**Input**: ["Hello", "World"]
+
+1. **Encoding**:
+   - "Hello" is encoded as "5#Hello"
+   - "World" is encoded as "5#World"
+   - Combined encoded string: "5#Hello5#World"
+
+2. **Decoding**:
+   - Extract "5#Hello": Recognizes '5' as the length, extracts "Hello".
+   - Extract "5#World": Recognizes '5' as the length, extracts "World".
+
+**Output**: ["Hello", "World"]
+
+This demonstration shows the seamless encoding and decoding process, ensuring that the data remains intact through transmission.
+
