@@ -56,6 +56,17 @@
 	<li><code>board[i][j]</code> is a digit <code>1-9</code> or <code>&#39;.&#39;</code>.</li>
 </ul>
 
+## Analysis of Approaches
+
+### Brute Force Approach
+**Description**: Check each row, column, and box individually by creating new sets for each check, ensuring no duplicates.
+- **Time Complexity**: Still effectively `O(1)` since the board size is constant, but less efficient due to multiple set creations.
+
+### Optimized Single Pass Approach
+**Description**: Use three sets for each of the checks—rows, columns, and boxes—updated during a single pass through the board.
+- **Pros**: Reduces redundancy and optimizes checking.
+- **Time Complexity**: `O(1)`, optimized by the constant size limit.
+
 ## Solution Explanation
 
 The solution checks if a given 9x9 Sudoku board is valid by ensuring there are no duplicate numbers in any row, column, or 3x3 sub-grid. Each cell may contain numbers from 1 to 9 or be empty (represented by '.'). Here’s the approach:
@@ -76,3 +87,18 @@ The solution checks if a given 9x9 Sudoku board is valid by ensuring there are n
 
 - **Time Complexity**: `O(1)`, as the input size is constant (a 9x9 board), making the operation effectively constant time despite the nested loops.
 - **Space Complexity**: `O(1)`, since the space used does not scale with input size but remains limited to storing a fixed number of elements (at most 9) from the board at any time.
+
+## Demonstration of the Optimal Solution
+
+### Example Using Input 1
+
+**Input**: Board as shown in the image above.
+
+1. **Check Rows and Columns**:
+   - No duplicates found in any row or column.
+2. **Check 3x3 Sub-grids**:
+   - Each 3x3 block is checked, and no duplicates are found.
+   
+**Output**: true
+
+This step-by-step demonstration shows the thoroughness of the solution in checking each necessary component of the Sudoku board to ensure all validation rules are met.
