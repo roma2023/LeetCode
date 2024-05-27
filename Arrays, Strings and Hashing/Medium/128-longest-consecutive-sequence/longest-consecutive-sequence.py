@@ -10,3 +10,8 @@ class Solution:
                     counter += 1
             Max = max(Max, counter)
         return Max
+
+"""
+complexity analysis, time complexity O(n) we will go over the list at most twice
+space complexity, as we are creating a set of the size n, the complexity is O(n)
+"""
