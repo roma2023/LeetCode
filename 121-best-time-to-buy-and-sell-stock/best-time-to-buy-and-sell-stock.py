@@ -9,9 +9,7 @@ class Solution:
         for price in prices: 
             if price < minP: 
                 maxProfit = max(maxProfit, maxP - minP)
-                minP = price
-                maxP = price
+                minP, maxP = price, price
             elif maxP < price: 
                 maxP = price
-            print(minP, maxP)
         return max(maxProfit, maxP - minP)
