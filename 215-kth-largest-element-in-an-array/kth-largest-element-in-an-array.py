@@ -8,5 +8,4 @@ class Solution:
         while k: 
             k -= 1
             ret = heapq.heappop(negList)
-        
         return -ret
