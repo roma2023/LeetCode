@@ -12,9 +12,6 @@ class Solution:
        # second_last -> last_node 
        # hashMap => value : freq
        # TC => O(n^2), SC => O(n) 
-
-        if head == None:
-            return
         
         # recursive solution
         def bt (head: 'ImmutableListNode') -> None:
