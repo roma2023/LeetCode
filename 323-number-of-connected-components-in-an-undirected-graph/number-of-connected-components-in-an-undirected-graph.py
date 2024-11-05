@@ -1,21 +1,35 @@
-class UnionFind:
-    def __init__(self):
-        self.parents = {}
+class DSU:
+    def __init__(self, n):
+        self.parent = list(range(n))
+        self.rank = [1] * n
 
-    def findParent(self, x):
-        par = self.parents.get(x, x)
-        if x != par: 
-            self.parents[x] = self.findParent(par)    
-            return self.parents[x]
-        return x
+    def find(self, node):  # so we have find that finds the parent of a node 
+        cur = node
+        while cur != self.parent[cur]: 
+            # self.parent[cur] = self.parent[self.parent[cur]]
+            cur = self.parent[cur]
+        return cur         # while finding the root, we map 
 
-    def union(self, x, y):
-        self.parents[self.findParent(x)] = self.findParent(y)
+    def union(self, u, v):
+        pu = self.find(u)
+        pv = self.find(v)
 
+        if pu == pv:
+            return False
+        
+        if self.rank[pv] > self.rank[pu]:
+            pu, pv = pv, pu
+        
+        self.parent[pv] = pu
+        self.rank[pu] += self.rank[pv]
+        
+        return True
 
 class Solution:
     def countComponents(self, n: int, edges: List[List[int]]) -> int:
-        dsu = UnionFind()
-        for a, b in edges:
-            dsu.union(a, b)
-        return len(set(dsu.findParent(x) for x in range(n)))
+        dsu = DSU(n)
+        res = n
+        for u, v in edges:
+            if dsu.union(u, v):
+                res -= 1
+        return res
