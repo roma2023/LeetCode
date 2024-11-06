@@ -23,3 +23,4 @@ class Solution:
         last.next = end
 
         return list1
+# TC => O(n + m) and SC => O(1)
