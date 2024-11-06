@@ -41,7 +41,11 @@ class TodoList:
             desc, date, complete = self.tasks[taskId]
             self.tasks[taskId] = (desc, date, True)
 
+# Time complexity:
+# O(nlogn) (Sorting)
 
+# Space complexity:
+# O(n)
 # Your TodoList object will be instantiated and called as such:
 # obj = TodoList()
 # param_1 = obj.addTask(userId,taskDescription,dueDate,tags)
