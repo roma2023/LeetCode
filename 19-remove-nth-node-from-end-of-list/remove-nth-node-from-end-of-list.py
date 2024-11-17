@@ -26,7 +26,6 @@ class Solution:
             right = right.next
             left = left.next
 
-        print(left, right)
         left.next = left.next.next
         
         return dummy.next
