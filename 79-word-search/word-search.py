@@ -23,6 +23,7 @@ class Solution:
         
         for r in range(ROWS):
             for c in range(COLS):
-                if dfs(r, c, 0):
-                    return True
+                if word[0] == board[r][c]:
+                    if dfs(r, c, 0):
+                        return True
         return False
