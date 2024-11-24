@@ -12,23 +12,40 @@ class Solution:
 
 # if they want iterative solution we have two solutions BFS(q) and DFS(stack):
 
-    # BFS => queue
-    def maxDepth(self, root: Optional[TreeNode]) -> int:
-        if not root:
-            return 0
+    # # BFS => queue
+    # def maxDepth(self, root: Optional[TreeNode]) -> int:
+    #     if not root:
+    #         return 0
 
-        q = collections.deque([root])
-        depth = 0
+    #     q = collections.deque([root])
+    #     depth = 0
 
-        while q:
-            for i in range(len(q)):
-                node = q.popleft()
-                if node.left: 
-                    q.append(node.left)
-                if node.right:
-                    q.append(node.right)
+    #     while q:
+    #         for i in range(len(q)):
+    #             node = q.popleft()
+    #             if node.left: 
+    #                 q.append(node.left)
+    #             if node.right:
+    #                 q.append(node.right)
         
-            depth += 1
+    #         depth += 1
 
-        return depth
+    #     return depth
+
+    # DFS => stack
+    def maxDepth(self, root: Optional[TreeNode]) -> int:
+        if not root: 
+            return 0
+        
+        stack = collections.deque([[root, 1]])
+        res = 0
+
+        while stack:
+            node, depth = stack.pop()
+            
+            if node:
+                stack.append([node.left, depth + 1])
+                stack.append([node.right, depth + 1])
+                res = max(res, depth)
+        return res
 
