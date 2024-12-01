@@ -1,9 +1,12 @@
 class Solution:
     def minimumAbsDifference(self, arr: List[int]) -> List[List[int]]:
-        # the BF approach
+        # the BF approach O(n^2)
+        # take every pair and calculate the diff and sort the result
+
         # sorting the list 
         # keep track of min difference between adjacent elements and we also want to 
         # record the pairs in a return array
+        # TC => O(nlogn)
 
         res = []
         minDiff = float("inf") # or max(arr) - min(arr)
@@ -17,4 +20,9 @@ class Solution:
                 res.append([sortedArray[i], sortedArray[i+1]])
             
         return res
+
+        # heap O(klogk)
+
+
+        
             
