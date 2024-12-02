@@ -22,11 +22,11 @@ class RandomizedSet:
             return False
         idx = self.hashMap[val]
         if idx == self.size - 1: 
-            self.array = self.array[:-1]
+            self.array.pop()
         else:
             last = self.array[self.size-1]
             self.array[idx] = last
-            self.array = self.array[:-1]
+            self.array.pop()
             self.hashMap[last] = idx
         
         del self.hashMap[val]
