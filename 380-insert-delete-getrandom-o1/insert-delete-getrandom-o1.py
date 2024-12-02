@@ -2,39 +2,42 @@ import random
 class RandomizedSet:
 
     def __init__(self):
-        self.hashMap = {}
-        self.arr = []
-        self.last  = 0
-        self.size = 0 
+        self.hashMap = {} # key:val => val:idx 
+        self.array = [] # array is used for the random function
+        self.size = 0 #  size of the array
 
     def insert(self, val: int) -> bool:
+        # returns true if item was not there, else false
         if val in self.hashMap:
             return False
         self.hashMap[val] = self.size
-        self.arr.append(val)
-        self.last = val
-        self.size += 1	
+        self.array.append(val)
+        self.size += 1
         return True
 
+
     def remove(self, val: int) -> bool:
+        # returns true if item was there, else false
         if val not in self.hashMap:
             return False
         idx = self.hashMap[val]
-        self.arr[idx] = self.last
-        self.hashMap[self.last] = idx
-        self.arr.pop()
-        self.size -= 1 
-        if self.size > 0:
-            self.last = self.arr[self.size - 1]
-
+        if idx == self.size - 1: 
+            self.array = self.array[:-1]
+        else:
+            last = self.array[self.size-1]
+            self.array[idx] = last
+            self.array = self.array[:-1]
+            self.hashMap[last] = idx
+        
         del self.hashMap[val]
+        self.size -= 1
+        # print(self.hashMap, self.array)
         return True
 
     def getRandom(self) -> int:
-        r = random.randint(0, self.size - 1)
-        return self.arr[r]
-
-        
+        # returns a random int with the same probability
+        idx = random.randint(0, self.size - 1)
+        return self.array[idx]
 
 
 # Your RandomizedSet object will be instantiated and called as such:
