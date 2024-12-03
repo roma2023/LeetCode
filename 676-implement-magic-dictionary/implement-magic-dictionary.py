@@ -30,13 +30,6 @@ class MagicDictionary:
 # obj = MagicDictionary()
 # obj.buildDict(dictionary)
 # param_2 = obj.search(searchWord)
-        
-
-
-# Your MagicDictionary object will be instantiated and called as such:
-# obj = MagicDictionary()
-# obj.buildDict(dictionary)
-# param_2 = obj.search(searchWord)
 
 
 # HashSet solution
