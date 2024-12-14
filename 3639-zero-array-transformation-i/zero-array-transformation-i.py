@@ -17,12 +17,9 @@ class Solution:
             decs[q[0]][0] += 1
             decs[q[1] + 1][1] += 1
         
-        print(decs)
-
         incVal = 0
         for i in range(len(nums)):
             incVal += decs[i][0] - decs[i][1]
-            print(incVal)
             if nums[i] > incVal:
                 return False
         
