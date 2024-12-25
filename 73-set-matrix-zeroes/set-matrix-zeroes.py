@@ -1,32 +1,40 @@
-class Solution(object):
-    def setZeroes(self, matrix):
+class Solution:
+    def setZeroes(self, matrix: List[List[int]]) -> None:
         """
-        :type matrix: List[List[int]]
-        :rtype: None Do not return anything, modify matrix in-place instead.
+        Do not return anything, modify matrix in-place instead.
         """
-        # O(1)
-        ROWS, COLS = len(matrix), len(matrix[0])
-        rowZero = False
+        rows, cols = len(matrix), len(matrix[0])
+        dirs = [
+            [1,0],
+            [-1,0],
+            [0,1],
+            [0,-1]
+        ]
 
-        # determine which rows/cols need to be zero
-        for r in range(ROWS):
-            for c in range(COLS):
+        def dfs(r,c, d):
+            if r not in range(rows) or c not in range(cols):
+                return
+            
+            if matrix[r][c] == 0:
+                matrix[r][c] = "0"
+                for row, col in dirs:
+                    dfs(r + row, c + col, [row, col])
+                return
+            
+            matrix[r][c] = "0"
+            row, col = d[0], d[1]
+            print(row,col)
+            dfs(r + row, c + col, [row, col])
+            return
+
+        for r in range(rows):
+            for c in range(cols):
                 if matrix[r][c] == 0:
-                    matrix[0][c] = 0
-                    if r > 0:
-                        matrix[r][0] = 0
-                    else:
-                        rowZero = True
-
-        for r in range(1, ROWS):
-            for c in range(1, COLS):
-                if matrix[0][c] == 0 or matrix[r][0] == 0:
+                    dfs(r,c, dirs)
+        
+        for r in range(rows):
+            for c in range(cols):
+                if matrix[r][c] == "0":
                     matrix[r][c] = 0
 
-        if matrix[0][0] == 0:
-            for r in range(ROWS):
-                matrix[r][0] = 0
-
-        if rowZero:
-            for c in range(COLS):
-                matrix[0][c] = 0
+        return matrix
