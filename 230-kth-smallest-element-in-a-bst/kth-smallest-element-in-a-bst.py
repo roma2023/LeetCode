@@ -10,18 +10,22 @@ class Solution:
     def kthSmallest(self, root: TreeNode, k: int) -> int:
         stack = []
         curr = root
-        n = 0
-
+        last = 0
+        
         while curr or stack:
-            while curr: 
+            while curr:
                 stack.append(curr)
                 curr = curr.left
-
+            # stackP = [e.val for e in stack]
+            # print(stackP)
             curr = stack.pop()
-            n += 1
-            if n == k:
+            
+            k -= 1
+            if k == 0:
                 return curr.val
             curr = curr.right
+
+            
 
                 
         
