@@ -5,18 +5,14 @@ class Solution:
         # ex: target = 9, diffs = {7, } and idxMap = {7: [0]} when the next num is 7, we know that we found the match
         # we need to return the idx of two numbers
 
-        diffs = set()
-        idxMap = dict()
+        diffs = dict()
         for i in range(len(nums)): 
             
             if nums[i] in diffs: 
-                return [idxMap[nums[i]], i]
+                return [diffs[nums[i]], i]
             
             diff = target - nums[i]
-            diffs.add(diff)
-
-            # given there is always one exact solution, we dont need a list store all possible inidces
-            idxMap[diff] = i
+            diffs[diff] = i
 
 
             
