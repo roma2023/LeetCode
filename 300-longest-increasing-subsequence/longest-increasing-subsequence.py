@@ -20,5 +20,4 @@ class Solution:
                 if nums[j] > nums[i]: 
                      dp[i] = max(dp[i], 1 + dp[j])
 
-        print(dp)
         return max(dp)
