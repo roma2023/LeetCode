@@ -1,9 +1,21 @@
 class Solution:
-    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+    def combinationSum(self, nums: List[int], target: int) -> List[List[int]]:
+        res = []
+        nums.sort()
+
+        def dfs(i, cur, total):
+            if total == target:
+                res.append(cur.copy())
+                return
             
-        def find(path, i, curr_sum, target):
-            if  i >= len(candidates) or curr_sum > target: return []
-            if curr_sum == target: return [path]
-            return [] + find(path + [candidates[i]], i, curr_sum + candidates[i], target) + find(path, i + 1, curr_sum, target)
+            for j in range(i, len(nums)):
+                if total + nums[j] > target:
+                    return
+                cur.append(nums[j])
+                dfs(j, cur, total + nums[j])
+                cur.pop()
         
-        return find([], 0, 0, target)
+        dfs(0, [], 0)
+        return res
+
+# TC => O(2^(target/minInArray)) and SC => O(t/m)
