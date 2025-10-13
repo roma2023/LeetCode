@@ -9,18 +9,16 @@ class Solution:
     #     return max(LIS)
 
     def lengthOfLIS(self, nums):
-        tails = [0] * len(nums)
-        size = 0
-        for x in nums:
-            i, j = 0, size
-            while i != j:
-                m = (i + j) // 2
-                if tails[m] < x:
-                    i = m + 1
-                else:
-                    j = m
-            tails[i] = x
-            size = max(i + 1, size)
-        return size
+        # [1,2,4,3] -> [2,4,3] -> [4,3] -> [3] => 
+        # dp[3] => 1, 
+        # dp[2] => for i in range(next) => if dp[i] > dp[2]: dp[i] = max(dp[2], 1 + dp[i])
 
-    # Runtime: 48 ms
+        dp = [1] * len(nums)
+
+        for i in range(len(nums) - 1, -1, -1):
+            for j in range(i+1, len(nums)):
+                if nums[j] > nums[i]: 
+                     dp[i] = max(dp[i], 1 + dp[j])
+
+        print(dp)
+        return max(dp)
