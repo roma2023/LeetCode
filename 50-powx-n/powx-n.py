@@ -11,11 +11,13 @@ class Solution:
             if x == 0:
                 return 0 
 
+            # go to the depth till we reach n == 0, then build up the res back
             res = rec(x, n // 2)
             res = res * res
+
             return x * res if n%2 else res
         
         res = rec(x, abs(n))
-        return res if n>=0 else 1/res
+        return res if n>=0 else 1/res # if n is positive then res if negative 1/res
 
             
