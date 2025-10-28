@@ -15,7 +15,7 @@ class BrowserHistory:
         next = Tree(url, None, self.current)
         self.current.next = next
         self.current = self.current.next
-        print("current: ", self.current.val)
+        #print("current: ", self.current.val)
 
     def back(self, steps: int) -> str:
         while self.current != self.history and steps != 0:
