@@ -1,19 +1,12 @@
 class Solution:
     def equalFrequency(self, word: str) -> bool:
-        cnt = Counter(word)
-        for ch in list(cnt.keys()):
-            cnt[ch] -= 1
-            if cnt[ch] == 0:
-                del cnt[ch]
-            # collect positive counts and see if they are all equal
-            freqs = set(cnt.values())
-            if len(freqs) == 1:
+        count = {}
+        for i in word:
+            count[i] = count.get(i,0)+1
+        for let in count:
+            count[let] -=1
+            temp_freq = [val for val in count.values() if val>0]
+            if len(set(temp_freq))==1:
                 return True
-            # restore
-            cnt[ch] = cnt.get(ch, 0) + 1
+            count[let] +=1
         return False
-            
-
-
-        
-        
