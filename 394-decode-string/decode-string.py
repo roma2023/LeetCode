@@ -1,44 +1,46 @@
 class Solution:
     def decodeString(self, s: str) -> str:
-        # we will keep tracl of open and closed brackets
-        # ok, if the counter is still >0 then we should keep looking for ], and cannot wrap up
 
-        # we will implement a stack, 
-        # everytime we see a number, we will not immediately write that many times into output
-        # because the string might have nested brackets
-        # that's why wonce we see anumber we will store that many copies of the bracket value back 
-        # into stack
+    # Input: s = "3[a2[c]]"
+    # s = 3[acc] => s = accaccacc
+    # stack = []
+    # stack = [3], open = 1, closed = 0
+    # stack = [3a2], open = 2, closed = 0
+    # stack = [3a2c], open = 2, closed = 1, start popping from the stack until we see a number
+    # temp = "c" * 2 and push it back to the stack
+    # stack = [3acc], open = 2, closed = 2, start popping from the stack ubtil we see a number
+    # temp = "acc" * 3
+    # stack = [accaccacc]
+    # at the end string = "accaccacc"
 
-        # "3[a]2[bc]"
-        # "3[a2[c]]"
-        # "2[abc]3[cd]ef"
+    # Output: "accaccacc"
 
         stack = []
 
-        # we want to iteratively add the characters of the string into stack
-        # when we see a ], meaning. when we get the inner not nested brackets
-        # we want to collapse them 
-        # ex: 3[a2[c]]. => 3[acc] => accaccacc
-
-        for i in range(len(s)):
-            if s[i] != "]":
-                stack.append(s[i])
-            else: 
-                subs = ""
+        for c in s:
+            if c != "]":
+                stack.append(c)
+            else:
+                temp = ""
                 while stack[-1] != "[":
-                    subs = stack.pop() + subs
+                    temp = stack.pop() + temp
                 stack.pop()
-                
-                k = ""
+
+                # stack = [13]
+                num = ""
                 while stack and stack[-1].isdigit():
-                    k = stack.pop() + k
+                    num = stack.pop() + num
 
-                stack.append(int(k) * subs)
-            
+                subs = temp * int(num)
+                stack.append(subs)
+
+
         return "".join(stack)
+                
 
 
 
-             
 
-        
+
+
+
