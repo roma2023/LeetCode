@@ -2,18 +2,16 @@ class Solution:
     def suggestedProducts(self, products: List[str], searchWord: str) -> List[List[str]]:
         products.sort()
         result = []
-        prefix = ""
-
-        for char in searchWord:
-            prefix += char
-            suggestions = []
-
+        for i in range(len(searchWord)):
+            matches = []
+            counter = 0
             for p in products:
-                if p.startswith(prefix):
-                    suggestions.append(p)
-                if len(suggestions) == 3:
-                    break
-                
-            result.append(suggestions)
 
+                if p[:i+1] == searchWord[:i+1]:
+                    counter += 1
+                    matches.append(p)
+                    if counter == 3:
+                        break
+            result.append(matches)
+        
         return result
