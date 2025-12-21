@@ -8,31 +8,20 @@ class Solution:
         # [10, 2, 2, 4, 6] O(n^2)
         # we can do better, we need a real sliding window, if the subarray of 4 elements satisfy our condition then all possible subsets of such subarray ca also satisfy our condition, hence we dont have recalculate that
         # [1,2,3,4,5],
-        if k <= 1: 
+        if k <= 1:
             return 0
-
-        ans = 0
-        subProduct = 1
-        i, j = 0, 0
-        while i <= j and i < len(nums) and j < len(nums):
-            while j < len(nums) and nums[j] >= k:
-                
-                subProduct = 1
-                i, j = j+1, j+1
-
-            if j < len(nums) and subProduct < k:
-                
-                
-                subProduct *= nums[j]
-                
-                if subProduct < k:
-                    print(j-i+1)
-                    ans += (j-i+1)
-                    j += 1
-                else:
-                    while subProduct >= k and i<=j:
-                        subProduct /= nums[i]
-                        i += 1  
-                    subProduct /= nums[j]
-        return ans
         
+        ans = 0
+        product = 1
+        left = 0
+        
+        for right in range(len(nums)):
+            product *= nums[right]
+            
+            while product >= k:
+                product //= nums[left]
+                left += 1
+            
+            ans += right - left + 1
+        
+        return ans
